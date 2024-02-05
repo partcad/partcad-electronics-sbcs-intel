@@ -1,3 +1,5 @@
+desc: Intel SBCs
+url: https://www.intel.com/content/www/us/en/products/docs/boards-kits/nuc/overview.html
 parts:
   nuc12:
     type: step
