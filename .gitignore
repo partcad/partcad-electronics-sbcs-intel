@@ -1,0 +1,6 @@
+# STEP files are built by CI and published as release assets (see
+# .github/workflows/release.yml); partcad.yaml downloads them from there.
+*.step
+*.stp
+build/
+__pycache__/
