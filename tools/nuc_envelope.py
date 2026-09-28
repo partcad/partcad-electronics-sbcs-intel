@@ -475,7 +475,12 @@ def wall_fin_stacks(world):
 
 
 # ------------------------------------------------------------------ main
-def run(src, dst, report, work, log=lambda *a: print(*a, flush=True)):
+def _log(*a):
+    import resource
+    print(*a, "[peak %.1f GB]" % (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1048576), flush=True)
+
+
+def run(src, dst, report, work, log=_log):
     T0 = time.time()
     stats = collections.Counter()
     leaves, _ = load_leaves(src)
