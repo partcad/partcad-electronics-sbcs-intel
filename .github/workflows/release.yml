@@ -1,0 +1,96 @@
+# Builds every board of tools/boards.tsv from the vendor's STEP archives and
+# publishes the results (<part>.step, <part>.json, SHA256SUMS) as the assets
+# of a GitHub release. partcad.yaml points at those assets, pinned by sha256:
+# after a release, regenerate it with
+#
+#   tools/gen_yaml.py <reports> partcad.yaml \
+#     --release https://github.com/<repo>/releases/download/<tag> --sums SHA256SUMS
+name: Release STEP files
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of the release to create (at the selected ref)
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+
+jobs:
+  boards:
+    runs-on: ubuntu-latest
+    outputs:
+      parts: ${{ steps.list.outputs.parts }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        run: echo "parts=$(grep -v '^#' tools/boards.tsv | cut -f1 | grep . | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: boards
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        part: ${{ fromJson(needs.boards.outputs.parts) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/requirements.txt
+      - name: Install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libgl1 libegl1 libxrender1 > /dev/null
+          pip install -r tools/requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/nuc-step/zip
+          key: vendor-${{ matrix.part }}-${{ hashFiles('tools/boards.tsv') }}
+      - name: Build ${{ matrix.part }}
+        env:
+          PYTHON: python
+          OUT: build
+        run: tools/regenerate.sh "${{ matrix.part }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.part }}
+          path: |
+            build/${{ matrix.part }}.step
+            build/${{ matrix.part }}.json
+          if-no-files-found: error
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-${{ matrix.part }}
+          path: build/${{ matrix.part }}.log
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          merge-multiple: true
+          path: dist
+      - name: Checksums
+        run: cd dist && sha256sum *.step *.json > SHA256SUMS && cat SHA256SUMS
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" dist/* \
+            --repo "${{ github.repository }}" \
+            --target "${{ github.sha }}" \
+            --title "STEP files $TAG" \
+            --notes "Single-solid board envelopes built by tools/nuc_envelope.py from the vendor archives listed in tools/boards.tsv at ${{ github.sha }}. SHA256SUMS lists the sha256 partcad.yaml pins each file by."

@@ -1,9 +1,56 @@
-desc: Intel SBCs
-url: https://www.intel.com/content/www/us/en/products/docs/boards-kits/nuc/overview.html
-parts:
-  nuc12:
-    type: step
-    desc: Intel NUC 12th gen board
-    vendor: intel
-    sku: NUC12WSB
-    url: https://ark.intel.com/content/www/us/en/ark/products/121629/intel-nuc-12-pro-board-nuc12wsbv5.html
+partcad: ">=0.8.0"
+name: //pub/electronics/sbcs/intel
+desc: Intel NUC boards (now made by ASUS)
+url: https://www.asus.com/support/faq/1052528/
+
+dependencies:
+  pub:
+    onlyInRoot: True
+    type: git
+    url: https://github.com/partcad/partcad-index.git
+
+docs:
+  intro: |
+    Intel NUC boards (the NUC business has been with ASUS since 2023) as
+    single-solid envelopes for assembly work: interference checks, clearance and
+    enclosure design. Each part is reduced from the vendor's PCBA model, which
+    describes the board as an assembly of hundreds of components (20-125 MB of
+    STEP per board), as published at https://www.asus.com/support/faq/1052528/
+
+    What each part is:
+
+    - **One solid.** The whole board, fused. Components that float in the vendor
+      model (solder gaps) are tied to the board by thin rods.
+    - **The outer silhouette.** Every component becomes its box, carved by the
+      openings visible along its own axes: port mouths with their keys and
+      notches, the bores of threaded inserts, the steps of its outline. Openings
+      narrower than about 0.7 mm or shallower than 0.6 mm (1 mm on the fan, heat
+      sink and other large parts) are walled off, and so are enclosed voids, rows
+      of heat sink fins and the gaps between neighbouring passives. Pins,
+      contacts, fan blades and everything nobody can see from outside are gone.
+    - **The PCB exactly as drawn**, outline and every hole of 2.5 mm or more.
+      PCB holes that a fastener can reach from both sides are declared as
+      `//pub/std/metric/m` through-hole ports (top and bottom), sized by the
+      largest metric screw whose ISO 273 fine clearance fits.
+
+    Placement: the PCB bottom is on Z=0 and the PCB outline is centred on X=Y=0;
+    +Z is the vendor's own up.
+
+    Not included: the NUC kits (chassis) and power bricks from the same page, and
+    NUC7i5BNB/NUC7i7BNB, NUC7i3BNB and D34010WYB/D54250WYB, whose STEP archives
+    are no longer downloadable.
+
+    The STEP files are not kept in this repository. `tools/` has the scripts that
+    produce them from the vendor archives (`tools/regenerate.sh`), GitHub Actions
+    runs them on every `v*` tag and publishes the results as release assets, and
+    each part below downloads its file from the release, pinned by its sha256.
+
+# Every part is one solid: the board envelope, reduced from the vendor's
+# PCBA model (see README.md). The PCB bottom is on Z=0 and the PCB outline is
+# centred on X=Y=0; up is the vendor's own up.
+# No parts yet: they are added once CI has published the STEP files as a
+# release (tools/gen_yaml.py --release).
+
+render:
+  svg:
+  readme:
