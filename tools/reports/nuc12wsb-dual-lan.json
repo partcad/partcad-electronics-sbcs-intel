@@ -1,0 +1,124 @@
+{
+ "component_failures": 0,
+ "carved": 39,
+ "openings": 523,
+ "plain_box": 17,
+ "pcb_holes_kept": 10,
+ "pcb_holes_filled": 120,
+ "pcb_exact": 1,
+ "invalid_to_box": 1,
+ "plain_box_costly": 9,
+ "tiny_merged": 8,
+ "fins_walled": 78,
+ "hidden_dropped": 1,
+ "union_volume_union": 144252.413,
+ "union_voids_filled": 10,
+ "union_bridges": 15,
+ "union_bridged_volume": 8771.80926844368,
+ "union_bridge_max_len": 6.8400666775525,
+ "union_parts": 1,
+ "union_pinches_filled": 287,
+ "union_short_edges_collapsed": 141,
+ "union_brep": "ok",
+ "union_volume_mesh": 144953.198,
+ "union_meshed_as_box": 1,
+ "union_grow": 0.0,
+ "readback": {
+  "solids": 1,
+  "free_shells": 0,
+  "volume": 144953.2,
+  "valid": true
+ },
+ "compacted": true,
+ "pcb_thickness": 1.567,
+ "holes": [
+  {
+   "x": -47.25,
+   "y": -45.75,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": -45.75,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -38.64,
+   "y": -37.15,
+   "d": 2.997,
+   "clear_top": 0.09,
+   "clear_bottom": 6.66
+  },
+  {
+   "x": -21.05,
+   "y": -28.12,
+   "d": 3.8,
+   "clear_top": 4.87,
+   "clear_bottom": 1.13
+  },
+  {
+   "x": 18.95,
+   "y": -28.12,
+   "d": 3.8,
+   "clear_top": 4.87,
+   "clear_bottom": 1.13
+  },
+  {
+   "x": -21.05,
+   "y": 21.88,
+   "d": 3.8,
+   "clear_top": 4.87,
+   "clear_bottom": 1.13
+  },
+  {
+   "x": 18.95,
+   "y": 21.88,
+   "d": 3.8,
+   "clear_top": 4.87,
+   "clear_bottom": 1.13
+  },
+  {
+   "x": -33.2,
+   "y": 34.9,
+   "d": 4.293,
+   "clear_top": 2.17,
+   "clear_bottom": 8.28
+  },
+  {
+   "x": 47.5,
+   "y": 44.8,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -47.5,
+   "y": 47.45,
+   "d": 4.3,
+   "clear_top": null,
+   "clear_bottom": null
+  }
+ ],
+ "src_bytes": 86487632,
+ "dst_bytes": 9530185,
+ "leaves": 167,
+ "components": 67,
+ "faces_in": 42537,
+ "faces_out": 10684,
+ "solids_out": 1,
+ "volume": 144953.2,
+ "valid": true,
+ "bbox": [
+  -50.8,
+  -54.55,
+  -27.04,
+  50.8,
+  55.55,
+  18.21
+ ],
+ "seconds": 167.0
+}

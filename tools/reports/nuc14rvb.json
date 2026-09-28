@@ -1,0 +1,125 @@
+{
+ "component_failures": 0,
+ "pcb_holes_kept": 10,
+ "pcb_holes_filled": 30,
+ "pcb_exact": 1,
+ "cut_empty": 21,
+ "plain_box": 18,
+ "carved": 42,
+ "openings": 518,
+ "plain_box_costly": 2,
+ "tiny_merged": 4,
+ "fins_walled": 0,
+ "hidden_dropped": 29,
+ "inputs_boxed": 2,
+ "union_volume_union": 49630.377,
+ "union_voids_filled": 4,
+ "union_bridges": 9,
+ "union_bridged_volume": 304.6070984859699,
+ "union_bridge_max_len": 5.613640266899568,
+ "union_parts": 1,
+ "union_pinches_filled": 202,
+ "union_short_edges_collapsed": 125,
+ "union_brep": "ok",
+ "union_volume_mesh": 49656.248,
+ "union_meshed_as_box": 8,
+ "union_grow": 0.0,
+ "readback": {
+  "solids": 1,
+  "free_shells": 0,
+  "volume": 49656.2,
+  "valid": true
+ },
+ "compacted": true,
+ "pcb_thickness": 1.605,
+ "holes": [
+  {
+   "x": -47.25,
+   "y": -45.75,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": -45.75,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -10.3,
+   "y": -35.85,
+   "d": 4.3,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -21.05,
+   "y": -28.12,
+   "d": 3.8,
+   "clear_top": 2.49,
+   "clear_bottom": 0.99
+  },
+  {
+   "x": 18.95,
+   "y": -28.12,
+   "d": 3.8,
+   "clear_top": 2.49,
+   "clear_bottom": 0.99
+  },
+  {
+   "x": -21.05,
+   "y": 21.88,
+   "d": 3.8,
+   "clear_top": 2.49,
+   "clear_bottom": 0.99
+  },
+  {
+   "x": 18.95,
+   "y": 21.88,
+   "d": 3.8,
+   "clear_top": 2.49,
+   "clear_bottom": 0.99
+  },
+  {
+   "x": -33.2,
+   "y": 34.9,
+   "d": 4.3,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -47.5,
+   "y": 44.8,
+   "d": 4.3,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": 47.45,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  }
+ ],
+ "src_bytes": 87297083,
+ "dst_bytes": 4903096,
+ "leaves": 117,
+ "components": 84,
+ "faces_in": 61767,
+ "faces_out": 5466,
+ "solids_out": 1,
+ "volume": 49656.2,
+ "valid": true,
+ "bbox": [
+  -50.8,
+  -56.77,
+  -10.1,
+  50.8,
+  56.05,
+  6.66
+ ],
+ "seconds": 127.8
+}

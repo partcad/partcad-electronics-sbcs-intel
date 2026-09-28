@@ -1,0 +1,123 @@
+{
+ "split_leaves": 1,
+ "component_failures": 0,
+ "pcb_holes_filled": 140,
+ "pcb_holes_kept": 10,
+ "pcb_exact": 1,
+ "carved": 22,
+ "openings": 292,
+ "plain_box_costly": 9,
+ "plain_box": 38,
+ "tiny_merged": 8,
+ "fins_walled": 0,
+ "hidden_dropped": 8,
+ "union_volume_union": 40737.644,
+ "union_voids_filled": 1,
+ "union_bridges": 10,
+ "union_bridged_volume": 13.882628642178789,
+ "union_bridge_max_len": 0.354819298730417,
+ "union_parts": 1,
+ "union_short_edges_collapsed": 2,
+ "union_brep": "ok",
+ "union_volume_mesh": 40976.864,
+ "union_meshed_as_box": 1,
+ "union_grow": 0.0,
+ "readback": {
+  "solids": 1,
+  "free_shells": 0,
+  "volume": 40976.9,
+  "valid": true
+ },
+ "compacted": true,
+ "pcb_thickness": 1.6,
+ "holes": [
+  {
+   "x": -47.5,
+   "y": -46.9,
+   "d": 4.0,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": -46.9,
+   "d": 4.0,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 46.1,
+   "y": -15.67,
+   "d": 4.2,
+   "clear_top": 2.73,
+   "clear_bottom": null
+  },
+  {
+   "x": -19.43,
+   "y": -0.7,
+   "d": 4.2,
+   "clear_top": 0.49,
+   "clear_bottom": 1.99
+  },
+  {
+   "x": 15.21,
+   "y": -0.7,
+   "d": 4.2,
+   "clear_top": 0.49,
+   "clear_bottom": 1.99
+  },
+  {
+   "x": -2.11,
+   "y": 29.3,
+   "d": 4.2,
+   "clear_top": 0.49,
+   "clear_bottom": 1.99
+  },
+  {
+   "x": 28.05,
+   "y": 41.0,
+   "d": 3.25,
+   "clear_top": 13.44,
+   "clear_bottom": 1.76
+  },
+  {
+   "x": 40.75,
+   "y": 41.0,
+   "d": 3.25,
+   "clear_top": 13.44,
+   "clear_bottom": 1.76
+  },
+  {
+   "x": -47.5,
+   "y": 43.5,
+   "d": 3.0,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": 43.5,
+   "d": 3.0,
+   "clear_top": null,
+   "clear_bottom": null
+  }
+ ],
+ "src_bytes": 56457905,
+ "dst_bytes": 4421797,
+ "leaves": 1,
+ "components": 70,
+ "faces_in": 12914,
+ "faces_out": 5127,
+ "solids_out": 1,
+ "volume": 40976.9,
+ "valid": true,
+ "bbox": [
+  -50.8,
+  -54.28,
+  -7.0,
+  50.8,
+  52.11,
+  18.1
+ ],
+ "seconds": 57.2
+}

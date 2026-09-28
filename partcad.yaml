@@ -2,6 +2,8 @@ partcad: ">=0.8.0"
 name: //pub/electronics/sbcs/intel
 desc: Intel NUC boards (now made by ASUS)
 url: https://www.asus.com/support/faq/1052528/
+cover:
+  part: nuc12wsb
 
 dependencies:
   pub:
@@ -48,8 +50,518 @@ docs:
 # Every part is one solid: the board envelope, reduced from the vendor's
 # PCBA model (see README.md). The PCB bottom is on Z=0 and the PCB outline is
 # centred on X=Y=0; up is the vendor's own up.
-# No parts yet: they are added once CI has published the STEP files as a
-# release (tools/gen_yaml.py --release).
+parts:
+  d33217ck:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/d33217ck.step
+    fileHash: sha256:afbc4391592413a8b8092e1be2db282dfdd624705d2f4edab91dbcf380e88e8a
+    desc: Intel NUC Board D33217CK (3rd gen Core i3-3217U)
+    vendor: intel
+    sku: D33217CK
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (D33217CK.STEP)
+    # Covers: D33217CK
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=2.5,depth=1.6":
+        hole1-top: [[-47.5, 43.5, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole1-bottom: [[-47.5, 43.5, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, 43.5, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole2-bottom: [[47.5, 43.5, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole3-top: [[-47.5, -46.9, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole3-bottom: [[-47.5, -46.9, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, -46.9, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole4-bottom: [[47.5, -46.9, 0], [0, 0, 1], 0]
+
+  d33217gke:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/d33217gke.step
+    fileHash: sha256:e5d37675f88a34304e2c5f3cf98939685af8de13331464d2277cb8d48620e75c
+    desc: Intel NUC Board D33217GKE / DCP847SKE (3rd gen Core i3-3217U / Celeron 847)
+    vendor: intel
+    sku: D33217GKE
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (D33217GKE-DCP847SKE.STEP)
+    # Covers: D33217GKE, DCP847SKE
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=2.5,depth=1.6":
+        hole1-top: [[43.5, -47.5, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole1-bottom: [[43.5, -47.5, 0], [0, 0, 1], 0]
+        hole2-top: [[43.5, 47.5, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole2-bottom: [[43.5, 47.5, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole3-top: [[-46.9, -47.5, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole3-bottom: [[-46.9, -47.5, 0], [0, 0, 1], 0]
+        hole4-top: [[-46.9, 47.5, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole4-bottom: [[-46.9, 47.5, 0], [0, 0, 1], 0]
+
+  d53427rke:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/d53427rke.step
+    fileHash: sha256:18ed00857393ee77cce0b2fff4d4a26ce7d768e706902e77fe2cbe8e1e55d69b
+    desc: Intel NUC Board D53427RKE (3rd gen Core i5-3427U)
+    vendor: intel
+    sku: D53427RKE
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (D53427RKE.STEP)
+    # Covers: D53427RKE
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=2.5,depth=1.6":
+        hole1-top: [[-47.5, 43.5, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole1-bottom: [[-47.5, 43.5, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, 43.5, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole2-bottom: [[47.5, 43.5, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole3-top: [[-47.5, -46.9, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole3-bottom: [[-47.5, -46.9, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, -46.9, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole4-bottom: [[47.5, -46.9, 0], [0, 0, 1], 0]
+
+  de3815tybe:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/de3815tybe.step
+    fileHash: sha256:fd5d160a528fe75b8c4d509b74429fa825ba7efbc330f4a5a07f1e512307829f
+    desc: Intel NUC Board DE3815TYBE (Atom E3815)
+    vendor: intel
+    sku: DE3815TYBE
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (DE3815TYBE.STEP)
+    # Covers: DE3815TYBE
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=2.5,depth=1.6":
+        hole1-top: [[-47.5, 44.75, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole1-bottom: [[-47.5, 44.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, 44.75, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole2-bottom: [[47.5, 44.75, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole3-top: [[-47.5, -45.65, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole3-bottom: [[-47.5, -45.65, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, -45.65, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole4-bottom: [[47.5, -45.65, 0], [0, 0, 1], 0]
+        hole5-top: [[-19.852, -31.335, 1.6], [1, 0, 0], 180]  # hole d4.2 mm
+        hole5-bottom: [[-19.852, -31.335, 0], [0, 0, 1], 0]
+        hole6-top: [[20.148, -31.335, 1.6], [1, 0, 0], 180]  # hole d4.2 mm
+        hole6-bottom: [[20.148, -31.335, 0], [0, 0, 1], 0]
+        hole7-top: [[-19.852, 20.665, 1.6], [1, 0, 0], 180]  # hole d4.2 mm
+        hole7-bottom: [[-19.852, 20.665, 0], [0, 0, 1], 0]
+        hole8-top: [[20.148, 20.665, 1.6], [1, 0, 0], 180]  # hole d4.2 mm
+        hole8-bottom: [[20.148, 20.665, 0], [0, 0, 1], 0]
+
+  nuc5myb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc5myb.step
+    fileHash: sha256:9e915715656107fc680f3dc9f6374601c4b0b096ec1f05985da2168440469415
+    desc: Intel NUC Board NUC5i3MYBE / NUC5i5MYBE (5th gen Core)
+    vendor: intel
+    sku: NUC5i5MYBE
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC5i3MYBE-NUC5i5MYBE.STEP)
+    # Covers: NUC5i3MYBE, NUC5i5MYBE
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=2.5,depth=1.6":
+        hole1-top: [[-47.5, 45.15, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole1-bottom: [[-47.5, 45.15, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, 45.15, 1.6], [1, 0, 0], 180]  # hole d3 mm
+        hole2-bottom: [[47.5, 45.15, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole3-top: [[-47.5, -45.65, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole3-bottom: [[-47.5, -45.65, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, -45.65, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole4-bottom: [[47.5, -45.65, 0], [0, 0, 1], 0]
+        hole5-top: [[39, 3.15, 1.6], [1, 0, 0], 180]  # hole d4.2 mm
+        hole5-bottom: [[39, 3.15, 0], [0, 0, 1], 0]
+        hole6-top: [[39, 41.15, 1.6], [1, 0, 0], 180]  # hole d4.2 mm
+        hole6-bottom: [[39, 41.15, 0], [0, 0, 1], 0]
+
+  nuc7i3dnb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc7i3dnb.step
+    fileHash: sha256:5544e94295435a25b9d88559828b8bf2c0fa9008b7c0e161a7b979bd4bc18afa
+    desc: Intel NUC Board NUC7i3DNBE (7th gen Core i3)
+    vendor: intel
+    sku: NUC7i3DNBE
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC7i3DN 01.stp)
+    # Covers: NUC7i3DNBE
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.593":
+        hole1-top: [[-47.5, -45.75, 1.593], [1, 0, 0], 180]  # hole d3.5 mm
+        hole1-bottom: [[-47.5, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.593], [1, 0, 0], 180]  # hole d3.5 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[-47.5, 45.05, 1.593], [1, 0, 0], 180]  # hole d4 mm
+        hole3-bottom: [[-47.5, 45.05, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, 45.05, 1.593], [1, 0, 0], 180]  # hole d4 mm
+        hole4-bottom: [[47.5, 45.05, 0], [0, 0, 1], 0]
+
+  nuc7i5dnb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc7i5dnb.step
+    fileHash: sha256:22ed38db48417d289e240e61abf80d0ab9d2dd7fb9fecd374322011eea6401d5
+    desc: Intel NUC Board NUC7i5DNBE / NUC7i7DNBE (7th gen Core i5/i7)
+    vendor: intel
+    sku: NUC7i5DNBE
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC7i5DN.STEP)
+    # Covers: NUC7i5DNBE, NUC7i7DNBE
+
+  nuc8cchb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc8cchb.step
+    fileHash: sha256:be1c068893baaa5f3efe0491fef03499d9ec7e193b6f6338aad0bb2da32ddd32
+    desc: Intel NUC Board NUC8CCHB (Chaco Canyon, 8th gen Core i5)
+    vendor: intel
+    sku: NUC8CCHB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC_CH_Board_19WW36.STEP)
+    # Covers: NUC8CCHB
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-69.8, -47.6, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole1-bottom: [[-69.8, -47.6, 0], [0, 0, 1], 0]
+        hole2-top: [[69.8, -47.6, 1.6], [1, 0, 0], 180]  # hole d4 mm
+        hole2-bottom: [[69.8, -47.6, 0], [0, 0, 1], 0]
+        hole3-top: [[-69.8, 30.1, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole3-bottom: [[-69.8, 30.1, 0], [0, 0, 1], 0]
+        hole4-top: [[69.8, 30.1, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole4-bottom: [[69.8, 30.1, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.6":
+        hole5-top: [[-54.5, -46.75, 1.6], [1, 0, 0], 180]  # hole d4.4 mm
+        hole5-bottom: [[-54.5, -46.75, 0], [0, 0, 1], 0]
+
+  nuc8pnb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc8pnb.step
+    fileHash: sha256:d862e30b6fca9bd102db316b9f05caf22460adadcde0c445694d0521f366491d
+    desc: Intel NUC Board NUC8v7PNB / NUC8v5PNB / NUC8i3PNB (Provo Canyon)
+    vendor: intel
+    sku: NUC8v5PNB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC8PNB_STEP.stp)
+    # Covers: NUC8v7PNB, NUC8v5PNB, NUC8i3PNB
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-47.5, -46.45, 1.6], [1, 0, 0], 180]  # hole d3.3 mm
+        hole1-bottom: [[-47.5, -46.45, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -46.45, 1.6], [1, 0, 0], 180]  # hole d3.3 mm
+        hole2-bottom: [[47.5, -46.45, 0], [0, 0, 1], 0]
+        hole3-top: [[-47.5, 44.35, 1.6], [1, 0, 0], 180]  # hole d3.3 mm
+        hole3-bottom: [[-47.5, 44.35, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, 44.35, 1.6], [1, 0, 0], 180]  # hole d3.3 mm
+        hole4-bottom: [[47.5, 44.35, 0], [0, 0, 1], 0]
+
+  nuc9qnb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc9qnb.step
+    fileHash: sha256:df98a276129fd2546bb21195f3ac66fad3cfb746bad85c5b8c7497baf67a64e2
+    desc: Intel NUC 9 Compute Element NUC9i5QNB / i7 / i9 / V7 / VX (Quartz Canyon)
+    vendor: intel
+    sku: NUC9i5QNB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC_QN-GN_Full Module_19WW50.STEP)
+    # Covers: NUC9VXQNB, NUC9V7QNB, NUC9i9QNB, NUC9i7QNB, NUC9i5QNB
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.57":
+        hole1-top: [[-34.05, 95.5, 1.57], [1, 0, 0], 180]  # hole d3.2 mm
+        hole1-bottom: [[-34.05, 95.5, 0], [0, 0, 1], 0]
+        hole2-top: [[47.95, 95.5, 1.57], [1, 0, 0], 180]  # hole d3.2 mm
+        hole2-bottom: [[47.95, 95.5, 0], [0, 0, 1], 0]
+
+  nuc11tnb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc11tnb.step
+    fileHash: sha256:18cb25e384a87ffec84655e6bc079e9ea48d54964c82abc023c9d71a666aaa61
+    desc: Intel NUC 11 Pro Board NUC11TNB (Tiger Canyon)
+    vendor: intel
+    sku: NUC11TNBi5
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC11TNB.stp)
+    # Covers: NUC11TNBv7, NUC11TNBi7, NUC11TNBv5, NUC11TNBi5, NUC11TNBi3
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-47.75, -46.08, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.75, -46.08, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -46.08, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -46.08, 0], [0, 0, 1], 0]
+        hole3-top: [[-47.5, 44.72, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole3-bottom: [[-47.5, 44.72, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, 44.72, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole4-bottom: [[47.5, 44.72, 0], [0, 0, 1], 0]
+
+  nuc11tnb-dual-lan:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc11tnb-dual-lan.step
+    fileHash: sha256:c88076b911599e19535a34bea14a77179283805935e4ed27d06a7b98b24f623a
+    desc: Intel NUC 11 Pro Board NUC11TNB with the dual LAN expansion module
+    vendor: intel
+    sku: NUC11TNBi5
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC11TNB_Dual_LAN.stp)
+    # Covers: NUC11TNBv7, NUC11TNBi7, NUC11TNBv5, NUC11TNBi5, NUC11TNBi3 (with expansion module)
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-47.75, -46.08, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.75, -46.08, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -46.08, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -46.08, 0], [0, 0, 1], 0]
+        hole3-top: [[-47.5, 44.72, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole3-bottom: [[-47.5, 44.72, 0], [0, 0, 1], 0]
+        hole4-top: [[47.5, 44.72, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole4-bottom: [[47.5, 44.72, 0], [0, 0, 1], 0]
+
+  nuc11tnbz:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc11tnbz.step
+    fileHash: sha256:fc4e40863075ac5941d1de87d87be800b02c41cce120b4d2d6353d107777c8b9
+    desc: Intel NUC 11 Pro Board NUC11TNBi*0Z (no Thunderbolt ports)
+    vendor: intel
+    sku: NUC11TNBi50Z
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC11TNBZ.STP)
+    # Covers: NUC11TNBi30Z, NUC11TNBi50Z, NUC11TNBi70Z
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-47.75, -46.08, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.75, -46.08, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -46.08, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -46.08, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 44.72, 1.6], [1, 0, 0], 180]  # hole d3.5 mm
+        hole3-bottom: [[47.5, 44.72, 0], [0, 0, 1], 0]
+
+  nuc12wsb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc12wsb.step
+    fileHash: sha256:829241f62e2ed5af52016f3f000319a872a0e66472c9598ad6bc1e0ebd6b82d8
+    desc: Intel NUC 12 Pro Board NUC12WSB (Wall Street Canyon)
+    vendor: intel
+    sku: NUC12WSB
+    url: https://ark.intel.com/content/www/us/en/ark/products/121629/intel-nuc-12-pro-board-nuc12wsbv5.html
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC12WSB.STEP)
+    # Covers: NUC12WSBv7, NUC12WSBi7, NUC12WSBv5, NUC12WSBi5, NUC12WSBi3
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.567":
+        hole1-top: [[-47.25, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 44.8, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 44.8, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.567":
+        hole4-top: [[-47.5, 47.45, 1.567], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-47.5, 47.45, 0], [0, 0, 1], 0]
+
+  nuc12wsb-dual-lan:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc12wsb-dual-lan.step
+    fileHash: sha256:35da342a7e85944728fc860d84fe48aafc347837f2f1e154d8d5f35b98bc3ebc
+    desc: Intel NUC 12 Pro Board NUC12WSB with the dual LAN expansion module
+    vendor: intel
+    sku: NUC12WSBi5
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC12WSB_Dual_LAN.STEP)
+    # Covers: NUC12WSBv7, NUC12WSBi7, NUC12WSBv5, NUC12WSBi5, NUC12WSBi3 (with expansion module)
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.567":
+        hole1-top: [[-47.25, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 44.8, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 44.8, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.567":
+        hole4-top: [[-47.5, 47.45, 1.567], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-47.5, 47.45, 0], [0, 0, 1], 0]
+
+  nuc12wsbz:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc12wsbz.step
+    fileHash: sha256:3af3e93424bb886c08adf292627060a25d0f81a873a45b967349ba0511d018b3
+    desc: Intel NUC 12 Pro Board NUC12WSBi*0Z (no Thunderbolt ports)
+    vendor: intel
+    sku: NUC12WSBi50Z
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC12WSBZ.STEP)
+    # Covers: NUC12WSBi70Z, NUC12WSBi50Z, NUC12WSBi30Z
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.567":
+        hole1-top: [[-47.25, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 44.8, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 44.8, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.567":
+        hole4-top: [[-47.5, 47.45, 1.567], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-47.5, 47.45, 0], [0, 0, 1], 0]
+
+  nuc13anb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc13anb.step
+    fileHash: sha256:d82b1c17cac7763a79a1c0438001ec0b294d320d160304958b04451ea1f8e07c
+    desc: Intel NUC 13 Pro Board NUC13ANB / NUC13L5B (Arena Canyon)
+    vendor: intel
+    sku: NUC13ANBi5
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC13ANB_NUC13LCB.STP)
+    # Covers: NUC13ANBi7, NUC13ANBv5, NUC13ANBi5, NUC13ANBi3, NUC13L5Bv7, NUC13L5Bv5, NUC13L5Bi5, NUC13L5Bi3
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.567":
+        hole1-top: [[-47.25, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 47.45, 1.567], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 47.45, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.567":
+        hole4-top: [[-47.5, 44.8, 1.567], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-47.5, 44.8, 0], [0, 0, 1], 0]
+
+  nuc14mnb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc14mnb.step
+    fileHash: sha256:b198ffe71295c990cf3b73402eb053400bb3157bfe5787b0e1386073b14c5bad
+    desc: ASUS NUC 14 Essential Board NUC14MNB
+    vendor: asus
+    sku: NUC14MNB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (MN_MB_20240821.stp)
+    # Covers: NUC14MNB*
+
+  nuc14rvb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc14rvb.step
+    fileHash: sha256:0e96a673512178af06224bdfd8b37978893bb84450d3b884b347ed2468ad670a
+    desc: ASUS NUC 14 Pro Board NUC14RVB (Revel Canyon), board only
+    vendor: asus
+    sku: NUC14RVB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC14RVB_ board only.stp)
+    # Covers: NUC14RVB*
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.605":
+        hole1-top: [[-47.25, -45.75, 1.605], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.605], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 47.45, 1.605], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 47.45, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.605":
+        hole4-top: [[-10.3, -35.85, 1.605], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-10.3, -35.85, 0], [0, 0, 1], 0]
+        hole5-top: [[-33.2, 34.9, 1.605], [1, 0, 0], 180]  # hole d4.3 mm
+        hole5-bottom: [[-33.2, 34.9, 0], [0, 0, 1], 0]
+        hole6-top: [[-47.5, 44.8, 1.605], [1, 0, 0], 180]  # hole d4.3 mm
+        hole6-bottom: [[-47.5, 44.8, 0], [0, 0, 1], 0]
+
+  nuc14rvb-thermal:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc14rvb-thermal.step
+    fileHash: sha256:e625b783eacaf52648acb5706f12bb0dbc8f95c71701402c071db7301d2b198e
+    desc: ASUS NUC 14 Pro Board NUC14RVB (Revel Canyon) with its thermal module
+    vendor: asus
+    sku: NUC14RVB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (nuc14rvb__board_W Thermal Module.stp)
+    # Covers: NUC14RVB*
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-47.25, -45.75, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 47.45, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 47.45, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.6":
+        hole4-top: [[-10.3, -35.85, 1.6], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-10.3, -35.85, 0], [0, 0, 1], 0]
+        hole5-top: [[-47.5, 44.8, 1.6], [1, 0, 0], 180]  # hole d4.3 mm
+        hole5-bottom: [[-47.5, 44.8, 0], [0, 0, 1], 0]
+
+  nuc15crb:
+    type: step
+    fileFrom: url
+    fileUrl: https://github.com/partcad/partcad-electronics-sbcs-intel/releases/download/v1.0.1/nuc15crb.step
+    fileHash: sha256:a41ca7683a4c55d4d8356906f591ee7f5fcb8f6b5b1fe592f88d91d4f30dc9ef
+    desc: ASUS NUC 15 Pro Board NUC15CRB (Cyber Canyon)
+    vendor: asus
+    sku: NUC15CRB
+    url: https://www.asus.com/support/faq/1052528/
+    # 3D model: https://www.asus.com/support/faq/1052528/ (NUC15CRB_PCBA_STEP.stp)
+    # Covers: NUC15CRB*
+    implements:
+      # PCB holes a fastener can reach from both sides, at the vendor's
+      # diameter; the M size is the largest whose ISO 273 fine clearance fits.
+      "//pub/std/metric/m:m-thru-depth;size=3,depth=1.6":
+        hole1-top: [[-47.25, -45.75, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole1-bottom: [[-47.25, -45.75, 0], [0, 0, 1], 0]
+        hole2-top: [[47.5, -45.75, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole2-bottom: [[47.5, -45.75, 0], [0, 0, 1], 0]
+        hole3-top: [[47.5, 47.45, 1.6], [1, 0, 0], 180]  # hole d3.9 mm
+        hole3-bottom: [[47.5, 47.45, 0], [0, 0, 1], 0]
+      "//pub/std/metric/m:m-thru-depth;size=4,depth=1.6":
+        hole4-top: [[-47.5, 44.8, 1.6], [1, 0, 0], 180]  # hole d4.3 mm
+        hole4-bottom: [[-47.5, 44.8, 0], [0, 0, 1], 0]
+
+  # The name this package used for the NUC 12 Pro board before it grew
+  nuc12:
+    type: alias
+    source: :nuc12wsb
 
 render:
   svg:
