@@ -1,0 +1,115 @@
+{
+ "component_failures": 0,
+ "pcb_holes_kept": 9,
+ "pcb_holes_filled": 117,
+ "pcb_exact": 1,
+ "carved": 31,
+ "openings": 397,
+ "plain_box_costly": 4,
+ "plain_box": 2,
+ "tiny_merged": 0,
+ "fins_walled": 0,
+ "hidden_dropped": 0,
+ "union_volume_union": 37964.024,
+ "union_voids_filled": 2,
+ "union_bridges": 2,
+ "union_bridged_volume": 990.5142903696592,
+ "union_bridge_max_len": 0.03997939547028342,
+ "union_parts": 1,
+ "union_short_edges_collapsed": 12,
+ "union_brep": "ok",
+ "union_volume_mesh": 38028.984,
+ "union_meshed_as_box": 1,
+ "union_grow": 0.0,
+ "readback": {
+  "solids": 1,
+  "free_shells": 0,
+  "volume": 38029.0,
+  "valid": true
+ },
+ "compacted": false,
+ "pcb_thickness": 1.6,
+ "holes": [
+  {
+   "x": -47.5,
+   "y": -45.65,
+   "d": 4.0,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": -45.65,
+   "d": 4.0,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -20.47,
+   "y": -0.05,
+   "d": 4.2,
+   "clear_top": 0.49,
+   "clear_bottom": 1.99
+  },
+  {
+   "x": 16.206,
+   "y": -0.025,
+   "d": 4.2,
+   "clear_top": 0.49,
+   "clear_bottom": 1.99
+  },
+  {
+   "x": 39.0,
+   "y": 3.15,
+   "d": 4.2,
+   "clear_top": 3.29,
+   "clear_bottom": null
+  },
+  {
+   "x": -2.11,
+   "y": 30.55,
+   "d": 4.2,
+   "clear_top": 0.49,
+   "clear_bottom": 1.99
+  },
+  {
+   "x": 39.0,
+   "y": 41.15,
+   "d": 4.2,
+   "clear_top": 8.44,
+   "clear_bottom": null
+  },
+  {
+   "x": -47.5,
+   "y": 45.15,
+   "d": 3.0,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": 45.15,
+   "d": 3.0,
+   "clear_top": null,
+   "clear_bottom": null
+  }
+ ],
+ "src_bytes": 53895271,
+ "dst_bytes": 9796065,
+ "leaves": 48,
+ "components": 38,
+ "faces_in": 19911,
+ "faces_out": 6951,
+ "solids_out": 1,
+ "volume": 38029.0,
+ "valid": true,
+ "bbox": [
+  -50.8,
+  -54.85,
+  -8.75,
+  50.8,
+  53.07,
+  11.6
+ ],
+ "seconds": 111.3
+}
