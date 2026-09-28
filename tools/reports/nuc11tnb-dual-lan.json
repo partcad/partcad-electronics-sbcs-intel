@@ -1,0 +1,125 @@
+{
+ "component_failures": 0,
+ "plain_box": 21,
+ "carved": 135,
+ "openings": 1244,
+ "empty_components": 11,
+ "pcb_holes_kept": 10,
+ "pcb_holes_filled": 118,
+ "pcb_exact": 1,
+ "invalid_to_box": 1,
+ "plain_box_costly": 12,
+ "tiny_merged": 8,
+ "fins_walled": 74,
+ "hidden_dropped": 8,
+ "union_volume_union": 96416.787,
+ "union_voids_filled": 3,
+ "union_bridges": 17,
+ "union_bridged_volume": 3199.736166802135,
+ "union_bridge_max_len": 3.4001446017254238,
+ "union_parts": 1,
+ "union_pinches_filled": 295,
+ "union_short_edges_collapsed": 134,
+ "union_brep": "ok",
+ "union_volume_mesh": 96969.989,
+ "union_meshed_as_box": 1,
+ "union_grow": 0.0,
+ "readback": {
+  "solids": 1,
+  "free_shells": 0,
+  "volume": 96970.0,
+  "valid": true
+ },
+ "compacted": true,
+ "pcb_thickness": 1.6,
+ "holes": [
+  {
+   "x": -47.75,
+   "y": -46.08,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": -46.08,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -38.64,
+   "y": -37.48,
+   "d": 2.997,
+   "clear_top": 0.09,
+   "clear_bottom": null
+  },
+  {
+   "x": -18.532,
+   "y": -28.436,
+   "d": 3.8,
+   "clear_top": 4.97,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": 19.032,
+   "y": -28.436,
+   "d": 3.8,
+   "clear_top": 4.97,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": -18.532,
+   "y": 21.81,
+   "d": 3.8,
+   "clear_top": 5.93,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": 19.032,
+   "y": 21.81,
+   "d": 3.8,
+   "clear_top": 4.97,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": -33.2,
+   "y": 34.57,
+   "d": 4.293,
+   "clear_top": 2.17,
+   "clear_bottom": 8.29
+  },
+  {
+   "x": -47.5,
+   "y": 44.72,
+   "d": 3.5,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": 44.72,
+   "d": 3.5,
+   "clear_top": null,
+   "clear_bottom": null
+  }
+ ],
+ "src_bytes": 110789941,
+ "dst_bytes": 10084411,
+ "leaves": 234,
+ "components": 181,
+ "faces_in": 57789,
+ "faces_out": 11153,
+ "solids_out": 1,
+ "volume": 96970.0,
+ "valid": false,
+ "bbox": [
+  -50.8,
+  -54.21,
+  -27.0,
+  50.8,
+  55.22,
+  18.05
+ ],
+ "seconds": 263.3
+}

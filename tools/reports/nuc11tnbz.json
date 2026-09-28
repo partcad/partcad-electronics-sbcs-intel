@@ -1,0 +1,118 @@
+{
+ "component_failures": 0,
+ "pcb_holes_kept": 9,
+ "pcb_holes_filled": 118,
+ "pcb_exact": 1,
+ "plain_box": 12,
+ "empty_components": 5,
+ "carved": 130,
+ "openings": 1150,
+ "invalid_to_box": 1,
+ "plain_box_costly": 10,
+ "tiny_merged": 8,
+ "fins_walled": 74,
+ "hidden_dropped": 2,
+ "union_volume_union": 83436.448,
+ "union_voids_filled": 3,
+ "union_bridges": 10,
+ "union_bridged_volume": 2723.1318132622177,
+ "union_bridge_max_len": 3.4001223473237046,
+ "union_parts": 1,
+ "union_pinches_filled": 300,
+ "union_short_edges_collapsed": 172,
+ "union_brep": "ok",
+ "union_volume_mesh": 83988.737,
+ "union_meshed_as_box": 1,
+ "union_grow": 0.0,
+ "readback": {
+  "solids": 1,
+  "free_shells": 0,
+  "volume": 83988.7,
+  "valid": true
+ },
+ "compacted": true,
+ "pcb_thickness": 1.6,
+ "holes": [
+  {
+   "x": -47.75,
+   "y": -46.08,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": 47.5,
+   "y": -46.08,
+   "d": 3.9,
+   "clear_top": null,
+   "clear_bottom": null
+  },
+  {
+   "x": -38.64,
+   "y": -37.48,
+   "d": 2.997,
+   "clear_top": 0.09,
+   "clear_bottom": null
+  },
+  {
+   "x": -18.532,
+   "y": -28.436,
+   "d": 3.8,
+   "clear_top": 4.97,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": 19.032,
+   "y": -28.436,
+   "d": 3.8,
+   "clear_top": 4.97,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": -18.532,
+   "y": 21.81,
+   "d": 3.8,
+   "clear_top": 5.93,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": 19.032,
+   "y": 21.81,
+   "d": 3.8,
+   "clear_top": 4.97,
+   "clear_bottom": 1.09
+  },
+  {
+   "x": -33.2,
+   "y": 34.57,
+   "d": 4.293,
+   "clear_top": 2.17,
+   "clear_bottom": 8.29
+  },
+  {
+   "x": 47.5,
+   "y": 44.72,
+   "d": 3.5,
+   "clear_top": null,
+   "clear_bottom": null
+  }
+ ],
+ "src_bytes": 73004401,
+ "dst_bytes": 7899562,
+ "leaves": 194,
+ "components": 159,
+ "faces_in": 46031,
+ "faces_out": 8911,
+ "solids_out": 1,
+ "volume": 83988.7,
+ "valid": true,
+ "bbox": [
+  -50.8,
+  -54.21,
+  -10.7,
+  50.8,
+  53.52,
+  18.05
+ ],
+ "seconds": 164.9
+}
