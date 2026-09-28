@@ -10,6 +10,7 @@ runs into single edges, and the faces share their edges exactly.
 import collections
 import numpy as np
 import manifold3d as mf
+from scipy.spatial import cKDTree
 
 from OCP.gp import gp_Pnt, gp_Pln, gp_Dir
 from OCP.BRepBuilderAPI import (BRepBuilderAPI_MakeVertex, BRepBuilderAPI_MakeEdge,
@@ -49,6 +50,61 @@ def solid_to_manifold(shape, mesh_fn, defl=0.005):
 def has_twins(m):
     V = np.asarray(m.to_mesh64().vert_properties)[:, :3]
     return len(np.unique(np.round(V, 6), axis=0)) < len(V)
+
+
+def split_parts(m):
+    """The positive (outward) connected parts of `m`, as manifolds, and how
+    many parts there were in all. Inside-out parts are enclosed voids.
+
+    Manifold.decompose() does the same, but its memory grows with the number
+    of parts times the size of the whole mesh: a board with hundreds of loose
+    components took ~95 GB. This labels triangles by connectivity instead.
+    """
+    mesh = m.to_mesh64()
+    V = np.asarray(mesh.vert_properties)[:, :3]
+    F = np.asarray(mesh.tri_verts, dtype=np.int64)
+    if len(F) == 0:
+        return [], 0
+    from scipy.sparse import coo_matrix
+    from scipy.sparse.csgraph import connected_components
+    nv = len(V)
+    rows = np.concatenate([F[:, 0], F[:, 1], F[:, 2]])
+    cols = np.concatenate([F[:, 1], F[:, 2], F[:, 0]])
+    g = coo_matrix((np.ones(len(rows), dtype=np.int8), (rows, cols)), shape=(nv, nv))
+    n, lab = connected_components(g, directed=False)
+    tlab = lab[F[:, 0]]
+    order = np.argsort(tlab, kind="stable")
+    bounds = np.searchsorted(tlab[order], np.arange(n + 1))
+    parts = []
+    for c in range(n):
+        tris = F[order[bounds[c]:bounds[c + 1]]]
+        if len(tris) == 0:
+            continue
+        used, inv = np.unique(tris, return_inverse=True)
+        Vc = V[used]
+        Fc = inv.reshape(-1, 3)
+        a, b, cc = Vc[Fc[:, 0]], Vc[Fc[:, 1]], Vc[Fc[:, 2]]
+        vol = np.einsum("ij,ij->i", a, np.cross(b, cc)).sum() / 6.0
+        if vol <= 0:
+            continue
+        pm = mf.Manifold(mf.Mesh64(vert_properties=Vc, tri_verts=Fc.astype(np.uint64)))
+        if pm.status() == mf.Error.NoError and not pm.is_empty():
+            parts.append(pm)
+    return parts, int(len(set(tlab.tolist())))
+
+
+def surface_samples(V, F, spacing):
+    """Vertices plus points spread over every triangle, about `spacing` apart."""
+    a, b, c = V[F[:, 0]], V[F[:, 1]], V[F[:, 2]]
+    area = 0.5 * np.linalg.norm(np.cross(b - a, c - a), axis=1)
+    n = np.minimum(np.ceil(area / (spacing * spacing)).astype(np.int64), 20000)
+    idx = np.repeat(np.arange(len(F)), n)
+    rng = np.random.default_rng(0)
+    u, v = rng.random(len(idx)), rng.random(len(idx))
+    flip = u + v > 1
+    u[flip], v[flip] = 1 - u[flip], 1 - v[flip]
+    P = a[idx] + u[:, None] * (b[idx] - a[idx]) + v[:, None] * (c[idx] - a[idx])
+    return np.vstack([V, P])
 
 
 def box_manifold(bb):
@@ -180,19 +236,27 @@ def union_to_solid(solids, mesh_fn, aabb_fn, log=print):
     return None, {"brep": last}
 
 
+def _mem(tag):
+    import resource, sys, time
+    print("    [union] %-28s peak %.1f GB  %s" % (tag, resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1048576,
+                                                time.strftime("%H:%M:%S")), file=sys.stderr, flush=True)
+
+
 def _union(base, eps):
     info = collections.Counter()
     ms = [grown(m, eps) for m in base]
     u = mf.Manifold.batch_boolean(ms, mf.OpType.Add)
+    _mem("batch union")
     info["volume_union"] = round(u.volume(), 3)
     # enclosed voids come back as inside-out parts: dropping them fills the
     # void, which is exactly the inner detail that has to go
     def positive(m):
-        ps = [p for p in m.decompose() if p.volume() > 0]
+        ps, nall = split_parts(m)
+        info["voids_filled"] = max(info.get("voids_filled", 0), nall - len(ps))
         return ps
     ps = positive(u)
-    info["voids_filled"] = len(u.decompose()) - len(ps)
     u = mf.Manifold.batch_boolean(ps, mf.OpType.Add) if len(ps) > 1 else ps[0]
+    _mem("voids")
     # bridge separate parts to the largest, nearest first
     for it in range(20):
         parts = sorted(positive(u), key=lambda p: -p.volume())
@@ -200,23 +264,26 @@ def _union(base, eps):
             break
         main = parts[0]
         mm = main.to_mesh64()
-        import trimesh
-        tm = trimesh.Trimesh(np.asarray(mm.vert_properties)[:, :3], np.asarray(mm.tri_verts), process=False)
+        # nearest points on the main body's surface, from a dense sample of it
+        # (a large flat face has few vertices, so its vertices alone would pull
+        # bridges far off; an exact closest-point query per piece costs memory
+        # in proportion to the whole body, and there can be hundreds of pieces)
+        tree = cKDTree(surface_samples(np.asarray(mm.vert_properties)[:, :3],
+                                       np.asarray(mm.tri_verts, dtype=np.int64), 0.1))
         cyls = []
         for p in parts[1:]:
-            pm = p.to_mesh64()
-            pv = np.asarray(pm.vert_properties)[:, :3]
-            # closest point on the main body's surface (not merely its nearest
-            # vertex, which on a large flat face can be far away)
-            cp, dist, _ = trimesh.proximity.closest_point(tm, pv)
+            pv = np.asarray(p.to_mesh64().vert_properties)[:, :3]
+            dist, k = tree.query(pv)
             j = int(np.argmin(dist))
             ext = np.ptp(pv, axis=0)
             r = float(np.clip(0.3 * np.sort(ext)[1], 0.05, 0.3))
-            cyls.append(cylinder_between(cp[j], pv[j], r=r, overshoot=min(0.3, 2 * r)))
+            cyls.append(cylinder_between(tree.data[k[j]], pv[j], r=r, overshoot=min(0.3, 2 * r)))
             info["bridges"] += 1
             info["bridged_volume"] += p.volume()
             info["bridge_max_len"] = max(info.get("bridge_max_len", 0), float(dist[j]))
+        _mem("bridge rods %d" % len(cyls))
         u = mf.Manifold.batch_boolean([u] + cyls, mf.OpType.Add)
+        _mem("bridged")
     parts = positive(u)
     info["parts"] = len(parts)
     u = mf.Manifold.batch_boolean(parts, mf.OpType.Add) if len(parts) > 1 else parts[0]
@@ -236,6 +303,7 @@ def _union(base, eps):
         info["pinches_filled"] += len(twins)
         cubes = [mf.Manifold.cube((0.04, 0.04, 0.04), True).translate(tuple(p)) for p in twins]
         u = mf.Manifold.batch_boolean([u] + cubes, mf.OpType.Add)
+    _mem("pinches")
     mesh = u.to_mesh64()
     V = np.asarray(mesh.vert_properties)[:, :3]
     F = np.asarray(mesh.tri_verts, dtype=np.int64)
@@ -264,7 +332,9 @@ def _union(base, eps):
         F = np.array([[root(x) for x in t] for t in F], dtype=np.int64)
         F = F[(F[:, 0] != F[:, 1]) & (F[:, 1] != F[:, 2]) & (F[:, 0] != F[:, 2])]
     info["short_edges_collapsed"] = short
+    _mem("short edges")
     solid, msg = mesh_to_brep(V, F)
+    _mem("brep")
     info["brep"] = msg
     info["volume_mesh"] = round(u.volume(), 3)
     return solid, info
