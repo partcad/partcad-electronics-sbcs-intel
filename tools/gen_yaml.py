@@ -132,6 +132,65 @@ runs them on every `v*` tag and publishes the results as release assets, and
 each part below downloads its file from the release, pinned by its sha256."""
 
 
+REPO = "partcad/partcad-electronics-sbcs-intel"
+
+USAGE = """### Publishing updated STEP files
+
+The STEP files are release assets, not repository files: `*.step` is ignored by
+git, and `partcad.yaml` downloads every part from a release, pinned by its
+sha256. To publish new ones:
+
+1. **Change what is built.** The reduction is `tools/nuc_envelope.py` (with
+   `meshunion.py`, `occ_util.py` and `minify_step.py`); the boards and the
+   vendor archives they come from are listed in `tools/boards.tsv`. A new
+   board also needs an entry in `BOARDS` in `tools/gen_yaml.py` (its
+   description, vendor, SKU and URL).
+2. **Try it locally** (optional). With the pinned packages installed
+   (`pip install -r tools/requirements.txt`, Python 3.12):
+
+   ```sh
+   tools/regenerate.sh nuc12wsb          # one board; no names for all of them
+   ```
+
+   This writes `build/<part>.step` and `build/<part>.json` (the report: what
+   was done, the read-back check, the PCB holes). Each report has to say
+   `"readback": {"solids": 1, "free_shells": 0, ..., "valid": true}`.
+3. **Commit and push to `main`, then push a new tag:**
+
+   ```sh
+   git tag -a v1.0.2 -m "STEP files v1.0.2"
+   git push origin v1.0.2
+   ```
+
+   The `Release STEP files` workflow (`.github/workflows/release.yml`) builds
+   every board in its own job and publishes `<part>.step`, `<part>.json` and
+   `SHA256SUMS` as release `v1.0.2`. It can also be started by hand (Actions >
+   Release STEP files > Run workflow, with the tag to create). If a board
+   fails, nothing is published: fix it and release under a new tag.
+4. **Point the package at the release:**
+
+   ```sh
+   gh release download v1.0.2 -R %(repo)s -D tools/reports \\
+       -p '*.json' -p SHA256SUMS --clobber
+   python3 tools/gen_yaml.py tools/reports partcad.yaml \\
+       --release https://github.com/%(repo)s/releases/download/v1.0.2 \\
+       --sums tools/reports/SHA256SUMS
+   ```
+
+   `gen_yaml.py` writes the whole `partcad.yaml`, this text included: edit
+   `INTRO` and `USAGE` there, not here.
+5. **Check and render**, then commit `partcad.yaml`, `tools/reports/`,
+   `README.md` and the `*.svg` previews:
+
+   ```sh
+   pc test      # 'manufacturability: No suppliers found' is expected
+   pc render    # downloads the release files, writes the SVGs and README.md
+   ```
+
+Earlier releases stay where they are, so a package pinned to an older tag of
+this repository keeps downloading the files it was published with.""" % dict(repo=REPO)
+
+
 def main(reports, out, names_order, release=None, sums=None):
     names_order = [n for n in names_order if os.path.exists(os.path.join(reports, n + ".json"))]
     hashes = {}
@@ -157,6 +216,9 @@ def main(reports, out, names_order, release=None, sums=None):
     L.append("docs:")
     L.append("  intro: |")
     for line in (INTRO % FAQ).split("\n"):
+        L.append(("    " + line) if line else "")
+    L.append("  usage: |")
+    for line in USAGE.split("\n"):
         L.append(("    " + line) if line else "")
     L.append("")
     L.append("# Every part is one solid: the board envelope, reduced from the vendor's")
