@@ -87,7 +87,7 @@ sha256. To publish new ones:
    `README.md` and the `*.svg` previews:
 
    ```sh
-   pc test      # 'manufacturability: No suppliers found' is expected
+   pc qual test # 'manufacturability: No suppliers found' is expected
    pc render    # downloads the release files, writes the SVGs and README.md
    ```
 
